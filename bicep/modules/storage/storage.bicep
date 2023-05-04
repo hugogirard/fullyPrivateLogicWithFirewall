@@ -1,10 +1,5 @@
 param location string
 param name string
-@allowed([
-  'StorageV2'
-  'Storage'
-])
-param kind string
 
 resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: name
@@ -12,7 +7,7 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   sku: {
     name: 'Standard_LRS'    
   }
-  kind: kind
+  kind: 'StorageV2'
   properties: {
     publicNetworkAccess: 'Disabled'
     networkAcls: {
