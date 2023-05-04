@@ -23,7 +23,7 @@ var virtualNetworkLinksSuffixBlobStorageName = '${privateStorageBlobDnsZoneName}
 var virtualNetworkLinksSuffixQueueStorageName = '${privateStorageQueueDnsZoneName}-link'
 var virtualNetworkLinksSuffixTableStorageName = '${privateStorageTableDnsZoneName}-link'
 
-resource privateStorageFileDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = if(deployFileStorage) {
+resource privateStorageFileDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = if (deployFileStorage) {
   name: privateStorageFileDnsZoneName
   location: 'global'
 }
@@ -33,17 +33,17 @@ resource privateStorageBlobDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01
   location: 'global'
 }
 
-resource privateStorageQueueDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = if(deployQueueStorage) {
+resource privateStorageQueueDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = if (deployQueueStorage) {
   name: privateStorageQueueDnsZoneName
   location: 'global'
 }
 
-resource privateStorageTableDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = if(deployTableStorage) {
+resource privateStorageTableDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = if (deployTableStorage) {
   name: privateStorageTableDnsZoneName
   location: 'global'
 }
 
-resource privateStorageFileDnsZoneName_virtualNetworkLinksSuffixFileStorage 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = if(deployFileStorage) {
+resource privateStorageFileDnsZoneName_virtualNetworkLinksSuffixFileStorage 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = if (deployFileStorage) {
   parent: privateStorageFileDnsZone
   name: virtualNetworkLinksSuffixFileStorageName
   location: 'global'
@@ -67,7 +67,7 @@ resource privateStorageBlobDnsZoneName_virtualNetworkLinksSuffixBlobStorage 'Mic
   }
 }
 
-resource privateStorageQueueDnsZoneName_virtualNetworkLinksSuffixQueueStorage 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = if(deployQueueStorage) {
+resource privateStorageQueueDnsZoneName_virtualNetworkLinksSuffixQueueStorage 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = if (deployQueueStorage) {
   parent: privateStorageQueueDnsZone
   name: virtualNetworkLinksSuffixQueueStorageName
   location: 'global'
@@ -79,7 +79,7 @@ resource privateStorageQueueDnsZoneName_virtualNetworkLinksSuffixQueueStorage 'M
   }
 }
 
-resource privateStorageTableDnsZoneName_virtualNetworkLinksSuffixTableStorage 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = if(deployTableStorage) {
+resource privateStorageTableDnsZoneName_virtualNetworkLinksSuffixTableStorage 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = if (deployTableStorage) {
   parent: privateStorageTableDnsZone
   name: virtualNetworkLinksSuffixTableStorageName
   location: 'global'
@@ -94,7 +94,7 @@ resource privateStorageTableDnsZoneName_virtualNetworkLinksSuffixTableStorage 'M
 // Private Endpoint
 
 
-resource privateEndpointFileStorage 'Microsoft.Network/privateEndpoints@2020-06-01' = if(deployFileStorage) {
+resource privateEndpointFileStorage 'Microsoft.Network/privateEndpoints@2020-06-01' = if (deployFileStorage) {
   name: privateEndpointFileStorageName
   location: location
   properties: {
@@ -136,7 +136,7 @@ resource privateEndpointBlobStorage 'Microsoft.Network/privateEndpoints@2020-06-
   }
 }
 
-resource privateEndpointQueueStorage 'Microsoft.Network/privateEndpoints@2020-06-01' = if(deployQueueStorage) {
+resource privateEndpointQueueStorage 'Microsoft.Network/privateEndpoints@2020-06-01' = if (deployQueueStorage) {
   name: privateEndpointQueueStorageName
   location: location
   properties: {
@@ -157,7 +157,7 @@ resource privateEndpointQueueStorage 'Microsoft.Network/privateEndpoints@2020-06
   }
 }
 
-resource privateEndpointTableStorage 'Microsoft.Network/privateEndpoints@2020-06-01' = if(deployTableStorage) {
+resource privateEndpointTableStorage 'Microsoft.Network/privateEndpoints@2020-06-01' = if (deployTableStorage) {
   name: privateEndpointTableStorageName
   location: location
   properties: {
@@ -178,7 +178,7 @@ resource privateEndpointTableStorage 'Microsoft.Network/privateEndpoints@2020-06
   }
 }
 
-resource privateEndpointFileStorageName_default 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2020-06-01' = if(deployFileStorage) {
+resource privateEndpointFileStorageName_default 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2020-06-01' = if (deployFileStorage) {
   parent: privateEndpointFileStorage
   name: 'default'  
   properties: {
@@ -208,7 +208,7 @@ resource privateEndpointBlobStorageName_default 'Microsoft.Network/privateEndpoi
   }
 }
 
-resource privateEndpointQueueStorageName_default 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2020-06-01' = if(deployQueueStorage) {
+resource privateEndpointQueueStorageName_default 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2020-06-01' = if (deployQueueStorage) {
   parent: privateEndpointQueueStorage
   name: 'default'  
   properties: {
@@ -223,7 +223,7 @@ resource privateEndpointQueueStorageName_default 'Microsoft.Network/privateEndpo
   }
 }
 
-resource privateEndpointTableStorageName_default 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2020-06-01' = if(deployTableStorage) {
+resource privateEndpointTableStorageName_default 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2020-06-01' = if (deployTableStorage) {
   parent: privateEndpointTableStorage
   name: 'default'  
   properties: {
