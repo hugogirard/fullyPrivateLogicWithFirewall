@@ -17,3 +17,23 @@ module firewall 'modules/firewall/firewall.bicep' = {
     suffix: suffix
   }
 }
+
+module storageLogicApp 'modules/storage/storage.bicep' = {
+  name: 'storageLogicApp'
+  params: {
+    location: location
+    kind: 'Storage'
+    name: 'strl${suffix}'
+    createFileShare: true
+  }
+}
+
+module storageAsset 'modules/storage/storage.bicep' = {
+  name: 'storageAsset'
+  params: {
+    location: location
+    kind: 'StorageV2'
+    name: 'stra${suffix}'
+    createFileShare: false
+  }
+}
