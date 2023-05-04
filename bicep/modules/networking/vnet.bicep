@@ -146,3 +146,5 @@ resource peeringSpokeStorageToHub 'Microsoft.Network/virtualNetworks/virtualNetw
   }
 }
 
+output firewallSubnetId string = vnetHub.properties.subnets[0].id
+
