@@ -35,6 +35,19 @@ module fileshare 'modules/storage/fileshare.bicep' = {
   }
 }
 
+module deployPeLogicAppStorage 'modules/networking/private.endpoint.bicep' = {
+  name: 'deployPeLogicAppStorage'
+  params: {
+    location: location
+    storageName: storageLogicApp.outputs.storageName
+    subnetId: 
+    vnetId: 
+    deployFileStorage: true
+    deployQueueStorage: true
+    deployTableStorage: true
+  }
+}
+
 module storageAsset 'modules/storage/storage.bicep' = {
   name: 'storageAsset'
   params: {

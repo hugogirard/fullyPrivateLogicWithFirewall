@@ -147,4 +147,7 @@ resource peeringSpokeStorageToHub 'Microsoft.Network/virtualNetworks/virtualNetw
 }
 
 output firewallSubnetId string = vnetHub.properties.subnets[0].id
-
+output peSubnetLogicAppId string = vnetSpokeLgApp.properties.subnets[1].id
+output vnetIdLogicApp string = vnetSpokeLgApp.id
+output peSubnetStorageId string = vnetSpokeStorage.properties.subnets[0].id
+output vnetIdStorage string = vnetSpokeStorage.id
