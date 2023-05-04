@@ -21,8 +21,7 @@ module firewall 'modules/firewall/firewall.bicep' = {
 module storageLogicApp 'modules/storage/storage.bicep' = {
   name: 'storageLogicApp'
   params: {
-    location: location
-    kind: 'Storage'
+    location: location    
     name: 'strl${suffix}'    
   }
 }
