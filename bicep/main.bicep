@@ -50,8 +50,7 @@ module deployPeLogicAppStorage 'modules/networking/private.endpoint.bicep' = {
 module storageAsset 'modules/storage/storage.bicep' = {
   name: 'storageAsset'
   params: {
-    location: location
-    kind: 'StorageV2'
+    location: location    
     name: 'stra${suffix}'    
   }
 }
