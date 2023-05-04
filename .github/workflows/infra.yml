@@ -34,6 +34,5 @@ jobs:
         uses: azure/arm-deploy@v1
         with:          
           resourceGroupName: ${{ env.RG_NAME }}
-          template: ./bicep/main.bicep
-          additionalArguments: "--what-if --rollback-on-error --what-if-exclude-change-types Create Ignore"
+          template: ./bicep/main.bicep      
           
