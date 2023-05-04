@@ -1,0 +1,39 @@
+name: Create Azure Resources
+
+on:
+  push:
+   paths:
+     - 'bicep/**'
+     - '.github/workflows/infra.yml'
+  workflow_dispatch:    
+
+env:
+  RG_NAME: 'rg-logic-app-private'
+  LOCATION: 'canadacentral'
+
+jobs:
+  create-azure-resources:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Create Azure Resource Group
+        run: |
+          az group create --name ${{ env.RG_NAME }} --location ${{ env.LOCATION }}}
+
+      - name: deploy
+        id: createResources
+        uses: azure/arm-deploy@v1
+        with:          
+          resourceGroupName: ${{ env.RG_NAME }}
+          template: ./bicep/main.bicep
+          additionalArguments: "--what-if --rollback-on-error --what-if-exclude-change-types Create Ignore"
+          
