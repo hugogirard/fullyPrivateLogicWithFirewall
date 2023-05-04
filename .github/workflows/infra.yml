@@ -27,7 +27,7 @@ jobs:
       
       - name: Create Azure Resource Group
         run: |
-          az group create --name ${{ env.RG_NAME }} --location ${{ env.LOCATION }}}
+          az group create --name ${{ env.RG_NAME }} --location ${{ env.LOCATION }}
 
       - name: deploy
         id: createResources
