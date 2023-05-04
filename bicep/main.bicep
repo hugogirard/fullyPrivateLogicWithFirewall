@@ -23,8 +23,7 @@ module storageLogicApp 'modules/storage/storage.bicep' = {
   params: {
     location: location
     kind: 'Storage'
-    name: 'strl${suffix}'
-    createFileShare: true
+    name: 'strl${suffix}'    
   }
 }
 
@@ -33,7 +32,6 @@ module storageAsset 'modules/storage/storage.bicep' = {
   params: {
     location: location
     kind: 'StorageV2'
-    name: 'stra${suffix}'
-    createFileShare: false
+    name: 'stra${suffix}'    
   }
 }

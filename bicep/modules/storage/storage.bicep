@@ -5,8 +5,6 @@ param name string
   'Storage'
 ])
 param kind string
-param createFileShare bool = false
-param fileShareName string = 'filelogic'
 
 resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: name
@@ -26,10 +24,6 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
     }
     supportsHttpsTrafficOnly: true
   }
-}
-
-resource fileShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2021-04-01' = if (createFileShare) {
-  name: '${storage}/default/${toLower(fileShareName)}'
 }
 
 output storageName string = storage.name
