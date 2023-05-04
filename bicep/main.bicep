@@ -41,9 +41,16 @@ module deployPeLogicAppStorage 'modules/networking/private.endpoint.bicep' = {
     storageName: storageLogicApp.outputs.storageName
     subnetId: vnet.outputs.peSubnetLogicAppId
     vnetId: vnet.outputs.vnetIdLogicApp
-    deployFileStorage: true
-    deployQueueStorage: true
-    deployTableStorage: true
+  }
+}
+
+module privateDNSZoneLinkLgApp 'modules/networking/privatednszoneblob.link.bicep' = {
+  name: 'privateDNSZoneLinkLgApp'
+  params: {
+    location: location
+    storageName: storageLogicApp.outputs.storageName
+    subnetId: vnet.outputs.peSubnetLogicAppId
+    vnetId: vnet.outputs.vnetIdLogicApp
   }
 }
 
