@@ -80,18 +80,9 @@ resource vnetSpokeStorage 'Microsoft.Network/virtualNetworks@2022-09-01' = {
     }
     subnets: [
       {
-        name: 'snet-web-integration'
-        properties: {
-          addressPrefix: '10.0.1.0/24'
-          networkSecurityGroup: {
-            id: nsgDefault.id
-          }
-        }
-      }
-      {
         name: 'snet-pe'
         properties: {
-          addressPrefix: '10.0.2.0/24'
+          addressPrefix: '11.0.0.0/24'
         }
       }           
     ]
