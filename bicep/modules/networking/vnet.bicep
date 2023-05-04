@@ -127,3 +127,31 @@ resource peeringSpokeLgToHub 'Microsoft.Network/virtualNetworks/virtualNetworkPe
   }
 }
 
+resource peeringHubSpokeStorage 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2021-05-01' = {
+  parent: vnetHub
+  name: 'hub-to-spoke-storage'
+  properties: {
+    allowVirtualNetworkAccess: true
+    allowForwardedTraffic: true
+    allowGatewayTransit: false
+    useRemoteGateways: false
+    remoteVirtualNetwork: {
+      id: vnetSpokeStorage.id
+    }
+  }
+}
+
+resource peeringSpokeStorageToHub 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2021-05-01' = {
+  parent: vnetSpokeStorage
+  name: 'spoke-storage-to-hub'
+  properties: {
+    allowVirtualNetworkAccess: true
+    allowForwardedTraffic: true
+    allowGatewayTransit: false
+    useRemoteGateways: false
+    remoteVirtualNetwork: {
+      id: vnetHub.id
+    }
+  }
+}
+
