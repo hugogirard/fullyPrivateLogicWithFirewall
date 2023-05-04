@@ -27,6 +27,14 @@ module storageLogicApp 'modules/storage/storage.bicep' = {
   }
 }
 
+module fileshare 'modules/storage/fileshare.bicep' = {
+  name: 'fileshare'
+  params: {
+    filesharename: 'filesharelogicapp'
+    storagename: storageLogicApp.outputs.storageName
+  }
+}
+
 module storageAsset 'modules/storage/storage.bicep' = {
   name: 'storageAsset'
   params: {
