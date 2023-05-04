@@ -40,8 +40,8 @@ module deployPeLogicAppStorage 'modules/networking/private.endpoint.bicep' = {
   params: {
     location: location
     storageName: storageLogicApp.outputs.storageName
-    subnetId: 
-    vnetId: 
+    subnetId: vnet.outputs.peSubnetLogicAppId
+    vnetId: vnet.outputs.vnetIdLogicApp
     deployFileStorage: true
     deployQueueStorage: true
     deployTableStorage: true
