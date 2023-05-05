@@ -103,6 +103,14 @@ module storageAsset 'modules/storage/storage.bicep' = {
   }
 }
 
+module containerFiles 'modules/storage/container.bicep' = {
+  name: 'containerFiles'
+  params: {
+    containerName: 'files'
+    storageName: storageAsset.outputs.storageName
+  }
+}
+
 module monitoring 'modules/monitoring/workspace.bicep' = {
   name: 'monitoring'
   params: {
@@ -117,6 +125,7 @@ module logicApp 'modules/logicapp/logicapp.bicep' = {
     fileShareName: fileshareName
     location: location
     storageName: storageLogicApp.outputs.storageName
+    storageAssetName: storageAsset.outputs.storageName
     subnetId: vnet.outputs.subnetWebDelegation
   }
 }

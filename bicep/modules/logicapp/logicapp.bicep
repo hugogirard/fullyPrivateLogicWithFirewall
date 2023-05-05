@@ -1,5 +1,6 @@
 param location string
 param storageName string
+param storageAssetName string
 param appInsightName string
 param subnetId string 
 param fileShareName string
@@ -8,6 +9,10 @@ var suffix = uniqueString(resourceGroup().id)
 
 resource storageLogicApp 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {
   name: storageName
+}
+
+resource storageAsset 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {
+  name: storageAssetName
 }
 
 resource insight 'Microsoft.Insights/components@2020-02-02' existing = {
@@ -91,6 +96,10 @@ resource logiapp 'Microsoft.Web/sites@2021-02-01' = {
         {
           name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'
           value: 'DefaultEndpointsProtocol=https;AccountName=${storageLogicApp.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageLogicApp.listKeys().keys[0].value}'
+        }
+        {
+          name: 'AzureBlob_connectionString'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAsset.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAsset.listKeys().keys[0].value}'
         }
         {
           name: 'WEBSITE_CONTENTSHARE'
