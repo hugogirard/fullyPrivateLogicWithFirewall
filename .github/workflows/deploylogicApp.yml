@@ -53,10 +53,3 @@ jobs:
           app-name: ${{ env.RG_NAME }}
           package: 'workflows/output/logic.zip'
           publish-profile: ${{steps.publishprofile.outputs.profile}}
-
-      - name: Swap parameter files 
-        id: params
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az functionapp deploy --resource-group ${{ env.RG_NAME }} --name ${{ secrets.LOGIC_APP_NAME }} --src-path  src/logicApp/azure.parameters.json --type static --target-path parameters.json          
