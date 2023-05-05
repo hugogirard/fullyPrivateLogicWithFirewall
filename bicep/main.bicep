@@ -77,6 +77,6 @@ module logicApp 'modules/logicapp/logicapp.bicep' = {
     fileShareName: fileshareName
     location: location
     storageName: storageLogicApp.outputs.storageName
-    subnetId: vnet.outputs.peSubnetLogicAppId
+    subnetId: vnet.outputs.subnetWebDelegation
   }
 }

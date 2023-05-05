@@ -48,6 +48,14 @@ resource vnetSpokeLgApp 'Microsoft.Network/virtualNetworks@2022-09-01' = {
           networkSecurityGroup: {
             id: nsgDefault.id
           }
+          delegations: [
+            {
+              name: 'webapp'
+              properties: {
+                serviceName: 'Microsoft.Web/serverFarms'
+              }
+            }
+          ]          
         }
       }
       {
@@ -147,6 +155,7 @@ resource peeringSpokeStorageToHub 'Microsoft.Network/virtualNetworks/virtualNetw
 }
 
 output firewallSubnetId string = vnetHub.properties.subnets[0].id
+output subnetWebDelegation string = vnetSpokeLgApp.properties.subnets[0].id
 output peSubnetLogicAppId string = vnetSpokeLgApp.properties.subnets[1].id
 output vnetIdLogicApp string = vnetSpokeLgApp.id
 output peSubnetStorageId string = vnetSpokeStorage.properties.subnets[0].id
