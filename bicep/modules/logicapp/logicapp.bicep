@@ -86,11 +86,11 @@ resource logiapp 'Microsoft.Web/sites@2021-02-01' = {
         }
         {
           name: 'AzureWebJobsStorage'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageLogicApp.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageLogicApp.id, storageLogicApp.apiVersion).keys[0].value}'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${storageLogicApp.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageLogicApp.listKeys().keys[0].value}'
         }
         {
           name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageLogicApp.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageLogicApp.id, storageLogicApp.apiVersion).keys[0].value}'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${storageLogicApp.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageLogicApp.listKeys().keys[0].value}'
         }
         {
           name: 'WEBSITE_CONTENTSHARE'
