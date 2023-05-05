@@ -129,3 +129,6 @@ module logicApp 'modules/logicapp/logicapp.bicep' = {
     subnetId: vnet.outputs.subnetWebDelegation
   }
 }
+
+
+output logicAppName string = logicApp.name

@@ -37,3 +37,10 @@ jobs:
           template: ./bicep/main.bicep
           parameters: adminUsername=${{ secrets.ADMIN_USERNAME }} adminPassword=${{ secrets.ADMIN_PASSWORD }}   
           
+
+      - uses: gliech/create-github-secret-action@v1
+        name: Write LogicApp name
+        with:
+          name: LOGIC_APP_NAME
+          value: ${{ steps.createResources.outputs.logicAppName }}
+          pa_token: ${{ secrets.PA_TOKEN }}              
