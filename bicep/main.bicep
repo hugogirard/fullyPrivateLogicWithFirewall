@@ -55,6 +55,9 @@ module deployPeLogicAppStorage 'modules/networking/private.endpoint.bicep' = {
 }
 
 module privateDNSZoneLinkLgApp 'modules/networking/privatednszoneblob.link.bicep' = {
+  dependsOn: [
+    deployPeLogicAppStorage
+  ]  
   name: 'privateDNSZoneLinkLgApp'
   params: {
     location: location
@@ -65,6 +68,9 @@ module privateDNSZoneLinkLgApp 'modules/networking/privatednszoneblob.link.bicep
 }
 
 module privateDNSZoneLinkAssetStorage 'modules/networking/privatednszoneblob.link.bicep' = {
+  dependsOn: [
+    deployPeLogicAppStorage
+  ]  
   name: 'privateDNSZoneLinkAssetStorage'
   params: {
     location: location
