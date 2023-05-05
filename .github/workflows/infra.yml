@@ -34,5 +34,6 @@ jobs:
         uses: azure/arm-deploy@v1
         with:          
           resourceGroupName: ${{ env.RG_NAME }}
-          template: ./bicep/main.bicep      
+          template: ./bicep/main.bicep
+          parameters: adminUsername=${{ secrets.ADMIN_USERNAME }} adminPassword=${{ secrets.ADMIN_PASSWORD }}   
           
