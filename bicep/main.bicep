@@ -70,6 +70,7 @@ module privateDNSZoneLinkLgApp 'modules/networking/privatednszoneblob.link.bicep
 module privateDNSZoneLinkAssetStorage 'modules/networking/privatednszoneblob.link.bicep' = {
   dependsOn: [
     deployPeLogicAppStorage
+    privateDNSZoneLinkLgApp
   ]  
   name: 'privateDNSZoneLinkAssetStorage'
   params: {
