@@ -1,6 +1,7 @@
 param location string = 'canadacentral'
 
 var suffix = uniqueString(resourceGroup().id)
+var fileshareName = 'filesharelogicapp'
 
 module vnet 'modules/networking/vnet.bicep' = {
   name: 'vnet'
@@ -29,7 +30,7 @@ module storageLogicApp 'modules/storage/storage.bicep' = {
 module fileshare 'modules/storage/fileshare.bicep' = {
   name: 'fileshare'
   params: {
-    filesharename: 'filesharelogicapp'
+    filesharename: fileshareName
     storagename: storageLogicApp.outputs.storageName
   }
 }
@@ -59,5 +60,23 @@ module storageAsset 'modules/storage/storage.bicep' = {
   params: {
     location: location    
     name: 'stra${suffix}'    
+  }
+}
+
+module monitoring 'modules/monitoring/workspace.bicep' = {
+  name: 'monitoring'
+  params: {
+    location: location
+  }
+}
+
+module logicApp 'modules/logicapp/logicapp.bicep' = {
+  name: 'logicApp'
+  params: {
+    appInsightName: monitoring.outputs.insightName
+    fileShareName: fileshareName
+    location: location
+    storageName: storageLogicApp.outputs.storageName
+    subnetId: vnet.outputs.peSubnetLogicAppId
   }
 }
