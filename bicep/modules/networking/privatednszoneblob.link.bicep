@@ -36,7 +36,7 @@ resource privateEndpointBlobStorage 'Microsoft.Network/privateEndpoints@2020-06-
     }
     privateLinkServiceConnections: [
       {
-        name: 'MyStorageQueuePrivateLinkConnection'
+        name: 'MyStorageBlobPrivateLinkConnection'
         properties: {
           privateLinkServiceId: storage.id
           groupIds: [

@@ -10,6 +10,15 @@ module vnet 'modules/networking/vnet.bicep' = {
   }
 }
 
+module bastion 'modules/bastion/bastion.bicep' = {
+  name: 'bastion'
+  params: {
+    location: location
+    subnetId: vnet.outputs.subnetBastionId    
+    suffix: suffix
+  }
+}
+
 module firewall 'modules/firewall/firewall.bicep' = {
   name: 'firewall'
   params: {
@@ -52,6 +61,16 @@ module privateDNSZoneLinkLgApp 'modules/networking/privatednszoneblob.link.bicep
     storageName: storageLogicApp.outputs.storageName
     subnetId: vnet.outputs.peSubnetLogicAppId
     vnetId: vnet.outputs.vnetIdLogicApp
+  }
+}
+
+module privateDNSZoneLinkAssetStorage 'modules/networking/privatednszoneblob.link.bicep' = {
+  name: 'privateDNSZoneLinkAssetStorage'
+  params: {
+    location: location
+    storageName: storageAsset.outputs.storageName
+    subnetId: vnet.outputs.peSubnetStorageId
+    vnetId: vnet.outputs.vnetIdStorage
   }
 }
 
