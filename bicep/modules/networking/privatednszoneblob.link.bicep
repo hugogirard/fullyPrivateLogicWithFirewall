@@ -9,7 +9,7 @@ resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {
 
 var privateStorageBlobDnsZoneName = 'privatelink.blob.${environment().suffixes.storage}'
 var privateEndpointBlobStorageName = '${storage.name}-blob-private-endpoint'
-var virtualNetworkLinksSuffixBlobStorageName = '${privateStorageBlobDnsZoneName}-link'
+var virtualNetworkLinksSuffixBlobStorageName = '${storageName}-link'
 
 resource privateStorageBlobDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' existing = {
   name: privateStorageBlobDnsZoneName
