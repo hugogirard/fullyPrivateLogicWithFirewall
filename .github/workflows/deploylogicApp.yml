@@ -1,11 +1,15 @@
 name: Deploy Logic App
 
 on:
+  push:
+    paths:
+      - 'workflows/**'
+      - '.github/workflows/deploylogicApp.yml'
   workflow_dispatch:
 
 env:
   RG_NAME: 'rg-logic-app-private'
-  LOGICAPP_PACKAGE_PATH: 'src/workflows'
+  LOGICAPP_PACKAGE_PATH: 'workflows'
 
 jobs:
   logic_app_build-deploy:
@@ -20,7 +24,7 @@ jobs:
 
       - name: Package logic
         run: | 
-          cd src/workflows
+          cd workflows
           mkdir -p output
           zip -r ./output/logic.zip .
 
@@ -43,11 +47,11 @@ jobs:
           azPSVersion: latest
 
       - name: Deploy to Azure Logic App
-        uses: Azure/functions-action@v1.3.1
+        uses: Azure/functions-action@v1
         id: la
         with:
           app-name: ${{ env.RG_NAME }}
-          package: 'src/logicApp/output/logic.zip'
+          package: 'workflows/output/logic.zip'
           publish-profile: ${{steps.publishprofile.outputs.profile}}
 
       - name: Swap parameter files 
