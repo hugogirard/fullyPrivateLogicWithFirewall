@@ -14,7 +14,7 @@ resource insight 'Microsoft.Insights/components@2020-02-02' existing = {
   name: appInsightName
 }
 
-resource hostingPlanFE 'Microsoft.Web/serverfarms@2018-11-01' = {
+resource hostingPlanFE 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: 'asp-${suffix}'
   location: location
   sku: {
