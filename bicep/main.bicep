@@ -18,8 +18,8 @@ module vnet 'modules/networking/vnet.bicep' = {
 module jumpbox 'modules/compute/jumpbox.bicep' = {
   name: 'jumpbox'
   params: {
-    adminPassword: adminUsername
-    adminUsername: adminPassword
+    adminPassword: adminPassword
+    adminUsername: adminUsername
     location: location
     subnetId: vnet.outputs.jumpboxSubnetId
   }
