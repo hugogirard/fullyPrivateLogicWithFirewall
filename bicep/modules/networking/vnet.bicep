@@ -324,6 +324,7 @@ resource peeringSpokeStorageToHub 'Microsoft.Network/virtualNetworks/virtualNetw
   }
 }
 
+output jumpboxSubnetId string = vnetHub.properties.subnets[1].id
 output firewallSubnetId string = vnetHub.properties.subnets[0].id
 output subnetWebDelegation string = vnetSpokeLgApp.properties.subnets[0].id
 output peSubnetLogicAppId string = vnetSpokeLgApp.properties.subnets[1].id

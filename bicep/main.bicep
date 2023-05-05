@@ -1,4 +1,9 @@
 param location string = 'canadacentral'
+@secure()
+param adminUsername string
+@secure()
+param adminPassword string
+
 
 var suffix = uniqueString(resourceGroup().id)
 var fileshareName = 'filesharelogicapp'
@@ -7,6 +12,16 @@ module vnet 'modules/networking/vnet.bicep' = {
   name: 'vnet'
   params: {
     location: location
+  }
+}
+
+module jumpbox 'modules/compute/jumpbox.bicep' = {
+  name: 'jumpbox'
+  params: {
+    adminPassword: adminUsername
+    adminUsername: adminPassword
+    location: location
+    subnetId: vnet.outputs.jumpboxSubnetId
   }
 }
 
